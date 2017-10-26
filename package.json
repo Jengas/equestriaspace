@@ -1,0 +1,24 @@
+{
+  "name": "Equestria bot",
+  "version": "0.0.1a",
+  "main": "index.js",
+  "description": "Equestria BOT that makes random sounds",
+  "keywords": [
+    "discord",
+    "api",
+    "bot",
+    "client",
+    "node",
+    "equestria",
+    "mlp",
+    "discordapp"
+  ],
+  "dependencies": {
+    "bufferutil": "^3.0.2",
+    "discord.js": "^11.2.1",
+    "libsodium-wrappers": "^0.5.4",
+    "opusscript": "0.0.3",
+    "select-random-file": "^1.1.0",
+    "uws": "^8.14.1"
+  }
+}

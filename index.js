@@ -7,157 +7,91 @@ const prefix = botSettings.prefix;
 const randomFile = require('select-random-file') // Random file API
 const client = new Discord.Client(); // Client connection
 
+const PoniesCMDS = [
+  "applejack",
+  "cmc",
+  "fluttershy",
+  "nightmaremoon",
+  "other",
+  "pinkiepie",
+  "celestia",
+  "kadense",
+  "luna",
+  "chrysalis",
+  "rainbowdash",
+  "rarity",
+  "dazzlings",
+  "twilightsparkle",
+  "zecora"
+];
+
 client.on('ready', async () => {
-	console.log('\x1b[32mSpookie Banana started to destroy server!\x1b[0m'); // Executes console log
+  console.log('\x1b[32mBOT is online and ready to scream!\x1b[0m'); // Executes console log
 });
 
 client.on('message', async message => {
   // Voice only works in guilds, if the message does not come from a guild,
   // we ignore it
   if (!message.guild) return;
-  if(message.author.bot) return;
-  if(message.channel.type === "dm") return;
-  
-  let messageArray = message.content;
-  let command = messageArray[0];
-  
-  
-  
-  if(message.content === `${prefix}mlps help`) {
-    if (message.member.voiceChannel) {
-			message.delete() // Delets user command written before executing sound
-			message.reply('.mlps help - Get help!' +'\r\n'+ '.mlps applejack - Play Apple Jacks voice' +'\r\n'+ '.mlps pinkiepie - Play Pinkie Pies voice' +'\r\n'+ '.mlps twilightsparkle - Play Twilight Sparkless voice' +'\r\n'+ '.mlps rarity - Play Raritys voice' +'\r\n'+ '.mlps rainbowdash - Play Rainbow Dashes voice' +'\r\n'+ '.mlps fluttershy - Play Fluttershys voice');
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
-  }
-  
-  if(message.content === `${prefix}mlps applejack`) {
-    if (message.member.voiceChannel) {
-      message.member.voiceChannel.join() // Joins voice channel
-        .then(connection => {
-			message.delete() // Delets user command written before executing sound
-			randomFile(botSettings.dirapplejack, (err, file) => { // Gets random file from dir
-				const dispatcher = connection.playFile(botSettings.dirapplejack +`${file}`) // Plays s specific sound
-				console.log(nowtime + ' ' + message.member + ` played sound of Apple Jack: ${file}`); // Executes console log
-				dispatcher.on('end', () => { // Exits voice channel
-					connection.disconnect();
-				});
-        })
-		})
-        .catch(console.log);
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
-  }
+  if (message.author.bot) return;
+  if (message.channel.type === "dm") return;
+  if (message.content.indexOf(prefix) !== 0) return;
 
-  if(message.content === `${prefix}mlps pinkiepie`) {
-    if (message.member.voiceChannel) {
-      message.member.voiceChannel.join() // Joins voice channel
-        .then(connection => {
-			message.delete() // Delets user command written before executing sound
-			randomFile(botSettings.dirpinkiepie, (err, file) => { // Gets random file from dir
-				const dispatcher = connection.playFile(botSettings.dirpinkiepie +`${file}`) // Plays s specific sound
-				console.log(nowtime + ' ' + message.member + ` played sound of Pinkie Pie: ${file}`); // Executes console log
-				dispatcher.on('end', () => { // Exits voice channel
-					connection.disconnect();
-				});
-        })
-		})
-        .catch(console.log);
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
-  }
-
-  if(message.content === `${prefix}mlps twilightsparkle`) {
-    if (message.member.voiceChannel) {
-      message.member.voiceChannel.join() // Joins voice channel
-        .then(connection => {
-			message.delete() // Delets user command written before executing sound
-			randomFile(botSettings.dirtwilight, (err, file) => { // Gets random file from dir
-				const dispatcher = connection.playFile(botSettings.dirtwilight +`${file}`) // Plays s specific sound
-				console.log(nowtime + ' ' + message.member + ` played sound of Twilight Sparkle: ${file}`); // Executes console log
-				dispatcher.on('end', () => { // Exits voice channel
-					connection.disconnect();
-				});
-        })
-		})
-        .catch(console.log);
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
-  }
-  
-    if(message.content === `${prefix}mlps rarity`) {
-    if (message.member.voiceChannel) {
-      message.member.voiceChannel.join() // Joins voice channel
-        .then(connection => {
-			message.delete() // Delets user command written before executing sound
-			randomFile(botSettings.dirrarity, (err, file) => { // Gets random file from dir
-				const dispatcher = connection.playFile(botSettings.dirrarity +`${file}`) // Plays s specific sound
-				console.log(nowtime + ' ' + message.member + ` played sound of Rarity: ${file}`); // Executes console log
-				dispatcher.on('end', () => { // Exits voice channel
-					connection.disconnect();
-				});
-        })
-		})
-        .catch(console.log);
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
-  }
-  
-      if(message.content === `${prefix}mlps fluttershy`) {
-    if (message.member.voiceChannel) {
-      message.member.voiceChannel.join() // Joins voice channel
-        .then(connection => {
-			message.delete() // Delets user command written before executing sound
-			randomFile(botSettings.dirfluttershy, (err, file) => { // Gets random file from dir
-				const dispatcher = connection.playFile(botSettings.dirfluttershy +`${file}`) // Plays s specific sound
-				console.log(nowtime + ' ' + message.member + ` played sound of FlutterShy: ${file}`); // Executes console log
-				dispatcher.on('end', () => { // Exits voice channel
-					connection.disconnect();
-				});
-        })
-		})
-        .catch(console.log);
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
-  }
-  
-        if(message.content === `${prefix}mlps rainbowdash`) {
-    if (message.member.voiceChannel) {
-      message.member.voiceChannel.join() // Joins voice channel
-        .then(connection => {
-			message.delete() // Delets user command written before executing sound
-			randomFile(botSettings.dirrbd, (err, file) => { // Gets random file from dir
-				const dispatcher = connection.playFile(botSettings.dirrbd +`${file}`) // Plays s specific sound
-				console.log(nowtime + ' ' + message.member + ` played sound of Rainbow Dash: ${file}`); // Executes console log
-				dispatcher.on('end', () => { // Exits voice channel
-					connection.disconnect();
-				});
-        })
-		})
-        .catch(console.log);
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
-  }
-});
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  let pony = args[0];
+  console.log(pony);
+  console.log(PoniesCMDS[pony]);
+  console.log(PoniesCMDS.includes(pony));
+  const soundsfolder = './sounds';
 
 
-
-/// FUNNY
-client.on('message', message => {
-  // Voice only works in guilds, if the message does not come from a guild,
-  // we ignore it
-  if (!message.guild) return;
-
-
+  if (message.content === `${prefix} help`) {
+    if (message.member.voiceChannel) {
+      message.delete() // Delets user command written before executing sound
+      const allCMDSEmbed = new Discord.RichEmbed()
+        .setTitle("All commands of bot:")
+        .setColor("#333333")
+        .setTimestamp()
+        .addBlankField(true)
+      //.addField("```fix\n" + prefix + 'help' + "\n```", false)
+      for (const i of PoniesCMDS) {
+        //console.log(i);
+        var allcommands = `${prefix} ${i}`
+        console.log(allcommands);
+        allCMDSEmbed.addField(i, "```fix\n" + allcommands + "\n```", false)
+      }
+      console.log(allCMDSEmbed);
+      await message.channel.send(`${message.author.toString()}, all commands:`, allCMDSEmbed);
+      return;
+    } else {
+      await message.channel.send(`${message.author.toString()}, You need to join a voice channel first!`);
+      return;
+    }
+  }
+	
+  if (PoniesCMDS.includes(pony) !== false) {
+    if (message.content == `${prefix} ${pony}`) {
+      if (message.member.voiceChannel) {
+        message.member.voiceChannel.join() // Joins voice channel
+          .then(connection => {
+            message.delete() // Delets user command written before executing sound
+            randomFile(`sounds/${pony}`, (err, file) => { // Gets random file from dir
+              const dispatcher = connection.playFile(`sounds/${pony}/${file}`) // Plays s specific sound
+              console.log(nowtime + ' ' + message.member + ` played sound of ${pony}: ${file}`); // Executes console log
+              dispatcher.on('end', () => { // Exits voice channel
+                connection.disconnect();
+              });
+            })
+          })
+          .catch(console.log);
+      } else {
+        await message.channel.send(`${message.author.toString()}, You need to join a voice channel first!`);
+      }
+    }
+  } else {
+    await message.channel.send(`${message.author.toString()}, Are you sure that you have entered right value?`);
+  }
 
 });
-
 
 client.login(botSettings.token);

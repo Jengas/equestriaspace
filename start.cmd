@@ -1,1 +1,2 @@
-node .
+nodemon index.js
+pause

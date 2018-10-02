@@ -39,9 +39,6 @@ client.on('message', async message => {
 
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   let pony = args[0];
-  console.log(pony);
-  console.log(PoniesCMDS[pony]);
-  console.log(PoniesCMDS.includes(pony));
   const soundsfolder = './sounds';
 
 
@@ -57,10 +54,8 @@ client.on('message', async message => {
       for (const i of PoniesCMDS) {
         //console.log(i);
         var allcommands = `${prefix} ${i}`
-        console.log(allcommands);
         allCMDSEmbed.addField(i, "```fix\n" + allcommands + "\n```", false)
       }
-      console.log(allCMDSEmbed);
       await message.channel.send(`${message.author.toString()}, all commands:`, allCMDSEmbed);
       return;
     } else {
